@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-const DataTable = (props) => {
-    let table = (
-        <div>Loading...</div>
-    );
-    if (props.currentRiskLevel !== undefined) {
-        table = (
+
+class DataTable extends Component{
+    render(){
+        let table = (
             <div className="table-responsive">
                 <table className="table table-hover">
                     <thead>
@@ -16,16 +15,14 @@ const DataTable = (props) => {
                     </thead>
                     <tbody>
                         {
-                            props
-                                .data
-                                .dataValues[props.currentRiskLevel - 1]
+                            this.props.dataValues
                                 .map((entry, index, array) => {
                                     return (
-                                        <tr className={props.selectedEntry === index ? 'active' : null}
+                                        <tr className={this.props.selectedEntry === index ? 'active' : null}
                                             id="index"
                                             key={index}
                                         >
-                                            <td>{props.data.labels[index]}</td>
+                                            <td>{this.props.labels[index]}</td>
                                             <td>{entry} USD</td>
                                         </tr>
                                     )
@@ -35,8 +32,17 @@ const DataTable = (props) => {
                 </table>
             </div>
         )
+        return ( this.props.currentRiskLevel ? (table) : <div>Loading data...</div>)
     }
-    return (table)
 }
 
-export default DataTable;
+const mapStateToProps = state => {
+    return {
+        selectedEntry: state.selectedEntry,
+        dataValues: state.dataValues,
+        labels: state.labels,
+        currentRiskLevel: state.currentRiskLevel
+    }
+}
+
+export default connect(mapStateToProps, null)(DataTable);

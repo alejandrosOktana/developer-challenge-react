@@ -26,12 +26,8 @@ const reducer = (state = initialState, action) => {
                 currentRiskLevel: action.riskLevel,
                 dataValues: getRiskLevelData(action.riskLevel),
             }
-        default: {
-            return {
-                ...state,
-                dataValues: getRiskLevelData(state.currentRiskLevel),
-            }
-        }
+        default:
+            return state
     }
 }
 

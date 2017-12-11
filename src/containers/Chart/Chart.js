@@ -3,6 +3,10 @@ import {Pie} from 'react-chartjs-2';
 import { connect } from 'react-redux';
 import { SELECT_SLICE } from '../../store/actions.js';
 
+const PIE_DIMENSIONS = {
+    WIDTH: 200,
+    HEIGHT: 200
+}
 class Chart extends Component {
 
     chartOptions = {
@@ -20,12 +24,12 @@ class Chart extends Component {
 
     render(){
         return (
-            <div className="col-md-offset-1 col-md-4">
+            <div className='col-md-offset-1 col-md-4'>
                 <Pie
                     data={this.props.data}
                     options={this.chartOptions}
-                    width={200}
-                    height={200}
+                    width={PIE_DIMENSIONS.WIDTH}
+                    height={PIE_DIMENSIONS.HEIGHT}
                     onElementsClick={this.props.selectSlice}/>
                 </div>
         )
@@ -50,7 +54,8 @@ const mapDispatchToProps = dispatch => {
     return {
         selectSlice: selectedElements => {
             if (selectedElements[0] !== undefined) 
-                dispatch({type: SELECT_SLICE, entryIndex: selectedElements[0]._index})}
+                dispatch({type: SELECT_SLICE, entryIndex: selectedElements[0]._index})
+        }
     }
 }
 

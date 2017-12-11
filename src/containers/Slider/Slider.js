@@ -6,17 +6,24 @@ class Slider extends Component {
     render() {
         return (
             <div>
-                <input type="range" name="" id="" min="1" max="10" step="1" onInput={this.props.setRiskLevel} defaultValue={this.props.currentRiskLevel}/>
-                <h3 className="text-center">Risk Level: {this.props.currentRiskLevel}</h3>
+                <input
+                    type='range'
+                    name=''
+                    min='1'
+                    max='10'
+                    step='1'
+                    onInput={this.props.setRiskLevel}
+                    defaultValue={this.props.currentRiskLevel}/>
+                <h3 className='text-center'>Risk Level: {this.props.currentRiskLevel}</h3>
             </div>
             
         )
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = ({ currentRiskLevel }) => {
     return {
-        currentRiskLevel: state.currentRiskLevel
+        currentRiskLevel
     }
 }
 

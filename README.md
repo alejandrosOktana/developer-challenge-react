@@ -1,7 +1,7 @@
 # Developer Challenge
 
 ## Running the app
-All files necessary to run the page are in the "dist" folder. This files must be served by a web server in order to open the page on a browser.
+All files necessary to run the page are in the "build" folder. This files must be served by a web server in order to open the page on a browser.
 
 # Serving the page
 Any static server will work. An easy to use example is the live-server node package or python's built in httpServer.
